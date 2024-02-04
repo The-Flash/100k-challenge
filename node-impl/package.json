@@ -1,0 +1,21 @@
+{
+  "name": "node-impl",
+  "version": "1.0.0",
+  "description": "100k Challenage",
+  "main": "main.js",
+  "author": "Augustine Smith",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node main.ts"
+  },
+  "dependencies": {
+    "bullmq": "^5.1.8",
+    "express": "^4.18.2",
+    "ioredis": "^5.3.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
