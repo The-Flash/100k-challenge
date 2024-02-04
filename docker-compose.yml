@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  # node-impl:
+  #   build:
+  #     context: "./node-impl"
+  #   ports:
+  #     - "8000:8000"
+  redis:
+    image: "redis:7.2.4"
+    restart: always
+    ports:
+      - 6379:6379
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - 5433:5432
+    env_file:
+      - .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+   pgdata:
