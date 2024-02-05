@@ -6,6 +6,6 @@ CREATE TABLE materials (
 -- Table for parts information
 CREATE TABLE parts (
     id VARCHAR(255) PRIMARY KEY,
-    person_id UUID REFERENCES person(id),
+    material_id VARCHAR(255) REFERENCES materials(id),
     name VARCHAR(255) NOT NULL
 );
