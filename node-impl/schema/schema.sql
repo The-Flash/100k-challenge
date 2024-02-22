@@ -1,11 +1,10 @@
 CREATE TABLE materials (
-    id VARCHAR(255) PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
 
 -- Table for parts information
 CREATE TABLE parts (
-    id VARCHAR(255) PRIMARY KEY,
-    material_id VARCHAR(255) REFERENCES materials(id),
+    material_id int REFERENCES materials(id),
     name VARCHAR(255) NOT NULL
 );

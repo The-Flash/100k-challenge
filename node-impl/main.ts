@@ -2,11 +2,11 @@ import fs from "fs";
 import readline from "readline";
 import { queue } from "./queues";
 import "./workers";
-import { JobData } from "./workers/types";
+import { JobData } from "./types";
 
 const filepath = "../data.log";
 
-const readStream = fs.createReadStream(filepath);
+const readStream = fs.createReadStream(filepath, "utf-8");
 
 const rl = readline.createInterface({
     input: readStream,
@@ -15,9 +15,11 @@ const rl = readline.createInterface({
 let i = 0;
 let data: JobData[] = [];
 let batchNo = 1;
+
 rl.on("line", (line) => {
     i++;
-    data.push(JSON.parse(line));
+    const obj = JSON.parse(line.replace(/'/g, "\""));
+    data.push(obj);
     if (i === 1000) {
         const jobName = "batch-" + batchNo;
         queue.add(jobName, data);
@@ -26,6 +28,7 @@ rl.on("line", (line) => {
         batchNo++;
     }
 })
+
 
 rl.on("close", () => {
     data = [];

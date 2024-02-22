@@ -1,10 +1,11 @@
 import yaml
+import json
 import uuid
 import logging.config
 from pathlib import Path
 from faker import Faker
 
-NUM_OF_RECORDS = 1_00_000
+NUM_OF_RECORDS = 100_000
 
 fake = Faker()
 
@@ -23,11 +24,9 @@ def setup_logging():
 def generate_record() -> dict:
     material = dict()
     material["name"] = fake.name()
-    material["id"] =str(uuid.uuid4())
     parts = []
     for _ in range(2):
         parts.append({
-            "id": str(uuid.uuid4()),
             "name": fake.word()
         })
     material["parts"] = parts
